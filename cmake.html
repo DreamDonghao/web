@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>CMake</title>
+</head>
+<body>
+<h3>为什么要学习cmake</h3>
+
+对于刚接触 C/C++ 的同学来说，这几乎是个必问的问题。学习初期，大多数人只会写单文件程序，或者直接依赖 IDE（例如
+VS）自带的构建工具来自动编译、链接
+多文件。但一旦项目规模扩大，这种方式的局限就会暴露出来：编译选项无法精细控制、跨平台或交叉编译配置麻烦、引入第三方库更是让人头大.......而使用CMake
+可以方便地解决这些问题。
+<h3>CMake是什么</h3>
+CMake 是个一个开源的跨平台自动化建构系统，用来管理软件建置的程序。
+<h3>CMake入门</h3>
+注:<h6>考虑到可能对命令行不熟悉，暂时不讲解具体用法,可以先下载Cline(默认使用CMake构建的ide),以下下内容仅仅为了对CMake有个了解</h6>
+将CMakeLists.txt放在项目目录中
+例:
+<pre><code>
+MyProject/
+├─ src/
+│   └─main.cpp
+├─ include/
+│   └─ main.h
+└─ CMakeLists.txt
+</code></pre>
+对于这个项目CMakeLists.txt可以这样写
+<pre><code>
+cmake_minimum_required(VERSION 3.10)   # 指定最低 CMake 版本
+
+project(MyProject)          # 定义项目名称
+
+# 添加头文件搜索路径
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+# 添加源文件
+add_executable(MyExecutable src/main.cpp)  # 创建一个可执行文件目标 MyExecutable
+
+</code></pre>
+当然这自是最基本的用法，具体用法可以访问官方文档
+<a href="https://cmake.org/cmake/help/latest/guide/tutorial/index.html">CMake官方文档</a>
+</body>
+</html>
