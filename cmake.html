@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title>CMake</title>
     <style>
-        .body{
-            font-size: 30px;
+        body{
+            font-size: 42px;
+            margin-left: 3%;
+            margin-right: 3%;
         }
     </style>
 </head>
@@ -30,11 +32,11 @@ MyProject/
 │   └─ main.h
 └─ CMakeLists.txt
 </code></pre>
-对于这个项目CMakeLists.txt可以这样写
+对于该项目的CMakeLists.txt
 <pre><code>
 cmake_minimum_required(VERSION 3.10)   # 指定最低 CMake 版本
 
-project(MyProject)          # 定义项目名称
+project(MyProject)                     # 定义项目名称
 
 # 添加头文件搜索路径
 include_directories(${PROJECT_SOURCE_DIR}/include)

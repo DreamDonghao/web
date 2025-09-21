@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>C++ 从源代码到可执行文件 — 零基础说明文档</title>
+</head>
+<style>
+    body{
+        font-size: 30px;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+    .my-table {
+        border-collapse: collapse; /* 合并边框 */
+        width: 100%;
+    }
+
+    .my-table th,
+    .my-table td {
+        border: 1px solid #333;  /* 替代 border="1" */
+        padding: 6px;            /* 替代 cellpadding="6" */
+        text-align: center;
+    }
+</style>
+<body>
+<h1>C++ 从源代码到可执行文件 — 零基础说明文档</h1>
+
+<section>
+    <h2>前言</h2>
+    <p>
+        本文档面向完全零基础的学习者，目标是以清晰、正式的语言说明 C++ 源代码如何被转换为可以在计算机上运行的可执行文件（机器码）。
+        文中将流程拆分为若干阶段，并对每一阶段的输入、输出与主要功能进行说明，便于初学者理解与定位编译过程中的常见问题。
+    </p>
+</section>
+
+<section>
+    <h2>总体流程概述</h2>
+    <p>从源代码到可执行文件的主要步骤如下：</p>
+    <pre><code>
+源代码（.cpp）
+   │
+   ▼
+[预处理]  →  预处理文件（.i）
+   │
+   ▼
+[编译]    →  汇编文件（.s）
+   │
+   ▼
+[汇编]    →  目标文件（.o / .obj）
+   │
+   ▼
+[链接]    →  可执行文件（如 hello / hello.exe）
+    </code></pre>
+    <p>
+        在实际使用的编译工具（如 <code>g++</code>、<code>clang++</code> 或
+        MSVC）中，通常只需执行一条命令，工具会自动完成上述所有阶段，但了解每个环节有助于调试与优化。
+    </p>
+</section>
+
+<section>
+    <h2>阶段详解</h2>
+
+    ```
+    <article>
+        <h3>1. 预处理（Preprocessing）</h3>
+        <p><strong>输入：</strong><code>.cpp</code> 源文件</p>
+        <p><strong>输出：</strong><code>.i</code> 预处理文件</p>
+        <p><strong>主要功能：</strong></p>
+        <ul>
+            <li>处理 <code>#include</code>：将头文件内容插入源文件位置。</li>
+            <li>处理宏定义 <code>#define</code>：进行符号替换。</li>
+            <li>处理条件编译指令（如 <code>#if</code>、<code>#ifdef</code> 等）。</li>
+        </ul>
+        <p><strong>示例命令（GCC/Clang）：</strong></p>
+        <pre><code>g++ -E main.cpp -o main.i</code></pre>
+        <p>
+            预处理结果为一份扩展后的源代码文件，不再包含预处理指令，但文件体积通常增大，因为头文件内容被展开。
+        </p>
+    </article>
+
+    <article>
+        <h3>2. 编译（Compilation）</h3>
+        <p><strong>输入：</strong><code>.i</code> 预处理文件</p>
+        <p><strong>输出：</strong><code>.s</code> 汇编文件</p>
+        <p><strong>主要功能：</strong></p>
+        <ul>
+            <li>词法与语法分析：检查代码是否符合语言语法。</li>
+            <li>语义分析：类型检查、作用域检查等。</li>
+            <li>中间表示与优化：编译器在此阶段可能对代码进行若干优化。</li>
+            <li>生成目标平台的汇编代码（文本形式）。</li>
+        </ul>
+        <p><strong>示例命令：</strong></p>
+        <pre><code>g++ -S main.i -o main.s</code></pre>
+        <p>汇编文件由汇编指令组成（如 <code>mov</code>、<code>call</code> 等），描述了程序执行的低级步骤。</p>
+    </article>
+
+    <article>
+        <h3>3. 汇编（Assembling）</h3>
+        <p><strong>输入：</strong><code>.s</code> 汇编文件</p>
+        <p><strong>输出：</strong>目标文件（<code>.o</code> 或 <code>.obj</code>）</p>
+        <p><strong>主要功能：</strong></p>
+        <ul>
+            <li>将汇编指令转换为机器码（二进制指令）。</li>
+            <li>生成目标文件，包含机器指令、符号表与重定位信息。</li>
+        </ul>
+        <p><strong>示例命令：</strong></p>
+        <pre><code>g++ -c main.s -o main.o
+```
+
+# 或直接
+
+g++ -c main.cpp -o main.o </code></pre>
+        <p>目标文件是“半成品”，可以被链接器进一步合并，但单独的目标文件通常不能直接执行。</p></article>
+
+    <article>
+        <h3>4. 链接（Linking）</h3>
+        <p><strong>输入：</strong>一个或多个目标文件（<code>.o</code>），以及所需的库文件</p>
+        <p><strong>输出：</strong>可执行文件（如 <code>main</code> 或 <code>main.exe</code>）</p>
+        <p><strong>主要功能：</strong></p>
+        <ul>
+            <li>合并多个目标文件为单一可执行文件或库。</li>
+            <li>解析并绑定外部符号（例如标准库中的函数或其他目标文件中的函数）。</li>
+            <li>生成程序的最终内存布局（代码段、数据段等）。</li>
+        </ul>
+        <p><strong>示例命令：</strong></p>
+        <pre><code>g++ main.o -o main</code></pre>
+        <p>链接完成后即可得到可在目标操作系统上运行的程序。</p>
+    </article>
+
+</section>
+
+<section>
+    <h2>一步完成的常用命令</h2>
+    <p>在日常开发中，通常使用一条命令完成上述所有阶段：</p>
+    <pre><code>g++ main.cpp -o main</code></pre>
+    <p>该命令会自动执行预处理、编译、汇编与链接四个阶段，并输出可执行文件 <code>main</code>。</p>
+    <p>运行方式：</p>
+    <ul>
+        <li>Linux / macOS：<code>./main</code></li>
+        <li>Windows：双击 <code>main.exe</code> 或在终端中输入 <code>main.exe</code></li>
+    </ul>
+</section>
+
+<section>
+    <h2>常见错误与定位建议</h2>
+    <p>不同阶段常见的错误类型如下表所示，可据此快速判断问题发生的阶段并进行修正。</p>
+    ```
+    <table class="my-table">
+        <thead>
+        <tr>
+            <th>阶段</th>
+            <th>典型错误类型</th>
+            <th>示例错误信息</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>预处理</td>
+            <td>头文件缺失、路径错误</td>
+            <td><code>fatal error: iostream: No such file or directory</code></td>
+        </tr>
+        <tr>
+            <td>编译</td>
+            <td>语法错误、类型不匹配</td>
+            <td><code>error: expected ';' before '}'</code></td>
+        </tr>
+        <tr>
+            <td>链接</td>
+            <td>未定义的外部符号、库未链接</td>
+            <td><code>undefined reference to 'main'</code></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p>定位建议：</p>
+    <ol>
+        <li>根据错误消息判断阶段（例如出现 <code>fatal error</code> 多为预处理问题）。</li>
+        <li>
+            对预处理问题，检查包含路径与头文件是否存在；对编译问题，检查语法与类型；对链接问题，确认目标文件与库是否正确提供并按正确顺序链接。
+        </li>
+    </ol>
+    ```
+
+</section>
+
+<section>
+    <h2>补充说明：构建工具与工程化</h2>
+    <p>
+        对于较大或复杂的项目，通常不手工运行编译命令，而是使用构建系统（如 <code>Makefile</code>、CMake、Ninja）来管理多个源文件、依赖关系与编译选项。
+        理解单个文件的编译流程有助于更好地使用这些构建工具并排查构建问题。
+    </p>
+</section>
+
+<section>
+    <h2>总结</h2>
+    <p>C++ 程序从源代码到可执行文件的过程可归纳为四个基本阶段：</p>
+    <ol>
+        <li><strong>预处理</strong>：展开头文件并处理宏与条件编译。</li>
+        <li><strong>编译</strong>：将源代码转换为汇编代码并进行语义检查与优化。</li>
+        <li><strong>汇编</strong>：把汇编转换为机器码，生成目标文件。</li>
+        <li><strong>链接</strong>：合并目标文件与库，生成最终可执行文件。</li>
+    </ol>
+    <p>
+        掌握这一过程可帮助初学者更有效地阅读编译器输出信息、定位错误并入门项目构建。若需示例练习或逐步演示（含命令行操作示范），可提出具体请求。</p>
+</section>
+</body>
+</html>
