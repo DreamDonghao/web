@@ -1,21 +1,143 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"> <!-- 网页编码设置为 UTF-8，支持中文 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 移动端适配 -->
+    <title>毛玻璃博客框架</title>
     <style>
-        body{
-            font-size: 42px;
-            margin-left: 3%;
-            margin-right: 3%;
+        body {
+            margin: 0; /* 去掉默认外边距 */
+            height: 100vh; /* 页面高度占满整个视口 */
+            display: flex; /* 使用 Flexbox 居中容器 */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            background: url("https://picsum.photos/1600/900?blur=5") no-repeat center/cover; /* 模糊背景图 */
+            font-family: "Microsoft YaHei", sans-serif; /* 使用微软雅黑字体 */
+        }
+
+        .container {
+            display: grid; /* 使用 CSS Grid 布局 */
+            grid-template-columns: 1fr 3fr; /* 两列：左边 1 份，右边 3 份 */
+            grid-template-rows: 1fr 2fr; /* 两行：上下均分 */
+            gap: 20px; /* 网格间距 */
+            width: 80%; /* 宽度占屏幕的 80% */
+            max-width: 1200px; /* 最大宽度 */
+            height: 80vh; /* 高度占 80% 视口 */
+            padding: 20px; /* 内边距 */
+            border-radius: 20px; /* 圆角 */
+
+            background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+            backdrop-filter: blur(15px); /* 毛玻璃模糊效果 */
+            -webkit-backdrop-filter: blur(15px); /* Safari 兼容 */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明边框 */
+        }
+
+        .box {
+            border-radius: 15px; /* 圆角 */
+            padding: 20px; /* 内边距 */
+            background: rgba(255, 255, 255, 0.3); /* 半透明背景 */
+            backdrop-filter: blur(10px); /* 毛玻璃效果 */
+            -webkit-backdrop-filter: blur(10px); /* Safari 兼容 */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* 半透明边框 */
+            color: #333; /* 文字颜色 */
+            font-size: 1.1em; /* 字体大小 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* 投影效果 */
+        }
+
+        /* 左上：个人信息区域（头像+GitHub 链接） */
+        .Personal-Information img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* 圆形头像 */
+            margin-bottom: 15px;
+            display: block; /* 单独占一行 */
+        }
+
+        /* GitHub 样式：图标+文字 */
+        .github {
+            display: flex; /* 横向排列图标和文字 */
+            align-items: center; /* 垂直居中 */
+            gap: 10px; /* 图标与文字间距 */
+            font-size: 28px;
+            transition: background 0.3s; /* 背景过渡动画 */
+        }
+
+        .github .icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .github a {
+            color: #0077cc; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            font-weight: bold;
+        }
+
+        .github:hover {
+            background: rgb(174, 255, 230);
+            border-radius: 8px;  /* 给个圆角更好看 */
+        }
+
+
+        /* 公告区域样式 */
+        .notice {
+            font-weight: bold;
+        }
+
+        /* 文章链接样式 */
+        .content a {
+            display: block; /* 每个链接单独占一行 */
+            margin: 10px 0; /* 外边距 */
+            padding: 10px; /* 内边距 */
+            background: rgba(255, 255, 255, 0.2); /* 半透明背景 */
+            border-radius: 10px; /* 圆角 */
+            color: #333; /* 字体颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            transition: background 0.3s; /* 背景过渡动画 */
+        }
+
+        .content a:hover {
+            background: rgb(174, 255, 230); /* 悬停时背景变色 */
+        }
+
+        /* 网格布局位置：左上（个人信息） */
+        .Personal-Information {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        /* 网格布局位置：左下（公告） */
+        .notice {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        /* 网格布局位置：右边（内容区，占两行） */
+        .content {
+            grid-column: 2;
+            grid-row: 1 / 3;
         }
     </style>
 </head>
 <body>
-<h1>C/C++项目开发入门教程</h1>
-<h1>前置知识</h1>
-<a href="compilationprocess.html">如何从C++代码到可执行文件</a>
-<br>
-<a href="cmake.html">cmake教程</a>
+<div class="container">
+    <!-- 左上：个人信息 -->
+    <div class="box Personal-Information">
+        <img src="image/tx.jpg" alt="头像">
+        <div class="github">
+            <img style="margin-bottom:0 ;padding-left: 10px" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="icon">
+            <a href="https://github.com/DreamDonghao">Github</a>
+        </div>
+    </div>
+    <!-- 左下：公告 -->
+    <div class="box notice">
+        公告:无
+    </div>
+    <!-- 右边：文章内容区 -->
+    <div class="box content">
+        <a href="compilationprocess.html">如何从C++代码到可执行文件</a>
+        <a href="cmake.html">CMake教程</a>
+    </div>
+</div>
 </body>
 </html>
