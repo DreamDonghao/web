@@ -32,6 +32,27 @@
             border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明边框 */
         }
 
+        /* 滚动条整体 */
+        .content::-webkit-scrollbar {
+            width: 10px; /* 宽度 */
+        }
+
+        /* 滑块（可以拖动的部分） */
+        .content::-webkit-scrollbar-thumb {
+            background: rgba(100, 100, 100, 0.5);
+            border-radius: 15px; /* 圆角 */
+        }
+
+        /* 滑块悬停时 */
+        .content::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 100, 100, 0.8);
+        }
+
+        /* 滚动条轨道（滑块后面的背景） */
+        .content::-webkit-scrollbar-track {
+            background: transparent; /* 或者半透明 */
+        }
+
         .box {
             border-radius: 15px; /* 圆角 */
             padding: 20px; /* 内边距 */
@@ -67,15 +88,15 @@
             height: 24px;
         }
 
-        .github a {
-            color: #0077cc; /* 链接颜色 */
+        .github{
+            color: #6900cc; /* 链接颜色 */
             text-decoration: none; /* 去掉下划线 */
             font-weight: bold;
         }
 
         .github:hover {
-            background: rgb(174, 255, 230);
-            border-radius: 8px;  /* 给个圆角更好看 */
+            background: rgb(240, 255, 251);
+            border-radius: 8px; /* 给个圆角更好看 */
         }
 
 
@@ -94,10 +115,12 @@
             color: #333; /* 字体颜色 */
             text-decoration: none; /* 去掉下划线 */
             transition: background 0.3s; /* 背景过渡动画 */
+
         }
 
         .content a:hover {
-            background: rgb(174, 255, 230); /* 悬停时背景变色 */
+
+
         }
 
         /* 网格布局位置：左上（个人信息） */
@@ -116,18 +139,90 @@
         .content {
             grid-column: 2;
             grid-row: 1 / 3;
+            overflow-y: auto; /* 出现竖向滚动条 */
         }
+
+        .menu, .submenu {
+            list-style: none; /* 去掉默认小圆点 */
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu > li {
+            margin: 10px 0;
+        }
+
+        .menu-title {
+            font-weight: bold;
+            cursor: pointer; /* 鼠标悬停显示手型 */
+            display: block;
+            padding: 8px;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .menu-title:hover {
+            background: rgb(240, 255, 251);
+        }
+
+        .menu-title::before {
+            content: "▶";
+            display: inline-block;
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-title.open::before {
+            transform: rotate(90deg); /* 旋转箭头 */
+        }
+
+        .submenu {
+            margin-left: 15px; /* 子菜单缩进 */
+            max-height: 0; /* 初始收起 */
+            overflow: hidden; /* 超出隐藏 */
+            transition: max-height 0.4s ease; /* 展开/收起动画 */
+        }
+
+        .submenu li a {
+            display: block;
+            padding: 6px 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .submenu li a:hover {
+            background: rgb(240, 255, 251);
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                width: 95%;
+                height: auto;
+            }
+            .content {
+                grid-column: 1;
+                grid-row: 3;
+                max-height: 50vh;
+            }
+        }
+
     </style>
+
 </head>
 <body>
 <div class="container">
     <!-- 左上：个人信息 -->
     <div class="box Personal-Information">
         <img src="image/tx.jpg" alt="头像">
-        <div class="github">
-            <img style="margin-bottom:0 ;padding-left: 10px" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="icon">
-            <a href="https://github.com/DreamDonghao">Github</a>
-        </div>
+        <a class="github" href="https://github.com/DreamDonghao" target="_blank">
+            <img style="margin-bottom: 0" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="icon">
+            <span>Github</span>
+        </a>
     </div>
     <!-- 左下：公告 -->
     <div class="box notice">
@@ -135,9 +230,38 @@
     </div>
     <!-- 右边：文章内容区 -->
     <div class="box content">
-        <a href="compilationprocess.html">如何从C++代码到可执行文件</a>
-        <a href="cmake.html">CMake教程</a>
+        <ul class="menu">
+            <li>
+                <span class="menu-title">C++</span>
+                <ul class="submenu">
+                    <li><a href="compilationprocess.html">如何从C++代码到可执行文件</a></li>
+                    <li><a href="cmake.html">CMake教程</a></li>
+                </ul>
+            </li>
+            <li>
+                <span class="menu-title">Python</span>
+                <ul class="submenu">
+                    <li><a href="python-basic.html">基础</a></li>
+                    <li><a href="python-advanced.html">进阶</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </div>
+<script>
+    document.querySelectorAll('.menu-title').forEach(title => {
+        title.addEventListener('click', () => {
+            const submenu = title.nextElementSibling;
+            title.classList.toggle('open');
+            if (title.classList.contains('open')) {
+                submenu.style.maxHeight = submenu.scrollHeight + "px";
+            } else {
+                submenu.style.maxHeight = 0;
+            }
+        });
+    });
+
+
+</script>
 </body>
 </html>
