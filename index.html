@@ -81,17 +81,15 @@
             gap: 10px; /* 图标与文字间距 */
             font-size: 28px;
             transition: background 0.3s; /* 背景过渡动画 */
+            color: #6900cc; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            font-weight: bold;
+            width: 60%;
         }
 
         .github .icon {
             width: 24px;
             height: 24px;
-        }
-
-        .github{
-            color: #6900cc; /* 链接颜色 */
-            text-decoration: none; /* 去掉下划线 */
-            font-weight: bold;
         }
 
         .github:hover {
@@ -197,6 +195,7 @@
         .submenu li a:hover {
             background: rgb(240, 255, 251);
         }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -204,13 +203,13 @@
                 width: 95%;
                 height: auto;
             }
+
             .content {
                 grid-column: 1;
                 grid-row: 3;
                 max-height: 50vh;
             }
         }
-
     </style>
 
 </head>
@@ -220,7 +219,8 @@
     <div class="box Personal-Information">
         <img src="image/tx.jpg" alt="头像">
         <a class="github" href="https://github.com/DreamDonghao" target="_blank">
-            <img style="margin-bottom: 0" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" class="icon">
+            <img style="margin-bottom: 0" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub"
+                 class="icon">
             <span>Github</span>
         </a>
     </div>
@@ -234,7 +234,13 @@
             <li>
                 <span class="menu-title">工具</span>
                 <ul class="submenu">
-                <li><a href="magicinternet.html">魔法</a></li>
+                    <li><a href="magicinternet.html">魔法</a></li>
+                </ul>
+            </li>
+            <li>
+                <span class="menu-title">杂项</span>
+                <ul class="submenu">
+                    <li><a>编程范式</a></li>
                 </ul>
             </li>
             <li>
@@ -248,6 +254,7 @@
                 <ul class="submenu">
                     <li><a href="compilationprocess.html">如何从C++代码到可执行文件</a></li>
                     <li><a href="cmake.html">CMake教程</a></li>
+                    <li><a href="stl.html">STL</a> </li>
                 </ul>
             </li>
             <li>
@@ -272,8 +279,6 @@
             }
         });
     });
-
-
 </script>
 </body>
 </html>

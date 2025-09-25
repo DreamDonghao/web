@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章标题 - Donghao的博客</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url("image/background.jpg") no-repeat center/cover;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .container {
+            width: 85%;
+            max-width: 1000px;
+            height: 85vh;
+            padding: 25px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+
+        }
+        /* 滚动条整体 */
+        .container::-webkit-scrollbar {
+            width: 10px; /* 宽度 */
+        }
+
+        /* 滑块（可以拖动的部分） */
+        .container::-webkit-scrollbar-thumb {
+            background: rgba(100, 100, 100, 0.5);
+            border-radius: 15px; /* 圆角 */
+        }
+
+        /* 滑块悬停时 */
+        .container::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 100, 100, 0.8);
+        }
+
+        /* 滚动条轨道（滑块后面的背景） */
+        .container::-webkit-scrollbar-track {
+            background: transparent; /* 或者半透明 */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .meta {
+            text-align: center;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 1.5em;
+            border-left: 4px solid #00bfa5;
+            padding-left: 10px;
+            color: #222;
+        }
+
+        pre {
+            background: rgba(0, 0, 0, 0.7);
+            color: #eee;
+            padding: 12px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <h1>文章标题</h1>
+    <div class="meta">作者：Donghao ｜ 发布日期：2025-09-25</div>
+
+    <h2>STL简介</h2>
+    <p>STL 是 C++ 标准库中最重要的部分之一，提供了一套通用的数据结构和算法模板。</p>
+    <p>STL主要由 容器 算法 迭代器 三部分以及 函数对象 适配器 分配器 组成</p>
+    <p>在算法竞赛中使用 STL 中的容器与算法可以极大提高编程的效率与正确性</p>
+
+    <h2>STL常用容器</h2>
+    这里只列出算法竞赛中常用的容器
+    <p>由于容器适配器在用法上与容器相同，我们将容器适配器视作容器</p>
+    <p>点击查看具体内容</p>
+    <h3>顺序容器</h3>
+    <p><a>string 字符串</a></p>
+    <p><a>vector 动态数组</a></p>
+    <p><a>deque 双端队列</a></p>
+    <p><a>queue 队列</a></p>
+    <p><a>stack 栈</a></p>
+    <p><a>priority_queue 堆</a></p>
+    <p></p>
+
+
+
+    <h2>三、总结</h2>
+    <p>写一点总结性的内容，方便读者快速回顾。</p>
+
+    <footer>
+        <p>© 2025 Donghao的博客 ｜ <a href="index.html">返回首页</a></p>
+    </footer>
+</div>
+</body>
+</html>
