@@ -1,0 +1,29 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+<div class = "magic_internet">
+  这是一门神秘的技能.......
+  
+  <h1>了解工具</h1>
+  使用魔法的工具有很多，这里我们使用v2rayN
+  <h2>v2rayN是什么</h2>
+  它是一个开源图形化界面，用来管理代理内核（如v2Ray Core、Xreay Core、sing-box等）。
+  它只是一个控制台，用来管理代理程序。
+  <h6>具体内容可以查阅资料，篇幅有限，这里不做过多介绍</h6>
+  <a href="https://github.com/2dust/v2rayN">前往github下载https://github.com/2dust/v2rayN</a>
+  <h4>也可以点击下面的注册链接,里面有详细教程</h4>
+  <h2>获取节点</h2>
+  只有代理程序是不够的，还需要节点才可以，在网上可以找到免费节点，但是可能网速过慢，或有隐私问题，因此
+  我们需要购买节点供应商（机场）的服务来获取节点，这里提供一个费用较低的
+  
+  <a href="https://www.ccgfw.top/auth/register?code=FmEI">
+    点击即可注册 https://www.ccgfw.top/auth/register?code=FmEI
+  </a>
+</div>
+</template>
+
+<style scoped>
+
+</style>
