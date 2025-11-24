@@ -60,13 +60,6 @@ const __VLS_ctx = {
 };
 let __VLS_components;
 let __VLS_directives;
-const __VLS_0 = {}.RouterView;
-/** @type {[typeof __VLS_components.RouterView, typeof __VLS_components.routerView, ]} */ ;
-// @ts-ignore
-RouterView;
-// @ts-ignore
-const __VLS_1 = __VLS_asFunctionalComponent(__VLS_0, new __VLS_0({}));
-const __VLS_2 = __VLS_1({}, ...__VLS_functionalComponentArgsRest(__VLS_1));
 __VLS_asFunctionalElement(__VLS_intrinsics.div, __VLS_intrinsics.div)({
     ...{ class: "home" },
 });
@@ -126,25 +119,32 @@ for (const [item] of __VLS_getVForSourceType((__VLS_ctx.menuItems))) {
         __VLS_asFunctionalElement(__VLS_intrinsics.li, __VLS_intrinsics.li)({
             key: (sub.name),
         });
-        const __VLS_6 = {}.RouterLink;
+        const __VLS_0 = {}.RouterLink;
         /** @type {[typeof __VLS_components.RouterLink, typeof __VLS_components.routerLink, typeof __VLS_components.RouterLink, typeof __VLS_components.routerLink, ]} */ ;
         // @ts-ignore
         RouterLink;
         // @ts-ignore
-        const __VLS_7 = __VLS_asFunctionalComponent(__VLS_6, new __VLS_6({
+        const __VLS_1 = __VLS_asFunctionalComponent(__VLS_0, new __VLS_0({
             to: (sub.href),
         }));
-        const __VLS_8 = __VLS_7({
+        const __VLS_2 = __VLS_1({
             to: (sub.href),
-        }, ...__VLS_functionalComponentArgsRest(__VLS_7));
-        const { default: __VLS_11 } = __VLS_9.slots;
+        }, ...__VLS_functionalComponentArgsRest(__VLS_1));
+        const { default: __VLS_5 } = __VLS_3.slots;
         (sub.name);
-        var __VLS_9;
+        var __VLS_3;
     }
 }
 __VLS_asFunctionalElement(__VLS_intrinsics.div, __VLS_intrinsics.div)({
-    ...{ class: "box" },
+    ...{ class: "box text" },
 });
+const __VLS_6 = {}.RouterView;
+/** @type {[typeof __VLS_components.RouterView, typeof __VLS_components.routerView, ]} */ ;
+// @ts-ignore
+RouterView;
+// @ts-ignore
+const __VLS_7 = __VLS_asFunctionalComponent(__VLS_6, new __VLS_6({}));
+const __VLS_8 = __VLS_7({}, ...__VLS_functionalComponentArgsRest(__VLS_7));
 /** @type {__VLS_StyleScopedClasses['home']} */ ;
 /** @type {__VLS_StyleScopedClasses['container']} */ ;
 /** @type {__VLS_StyleScopedClasses['box']} */ ;
@@ -160,5 +160,6 @@ __VLS_asFunctionalElement(__VLS_intrinsics.div, __VLS_intrinsics.div)({
 /** @type {__VLS_StyleScopedClasses['open']} */ ;
 /** @type {__VLS_StyleScopedClasses['submenu']} */ ;
 /** @type {__VLS_StyleScopedClasses['box']} */ ;
+/** @type {__VLS_StyleScopedClasses['text']} */ ;
 const __VLS_export = (await import('vue')).defineComponent({});
 export default {};
