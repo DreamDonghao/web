@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import magic_internet from '@/components/magic_internet.vue'
+import magic_internet from '../components/magic_internet.vue'
 
 const router = createRouter({
     history: createWebHashHistory('/web/'),  // ⭐ 改这里
