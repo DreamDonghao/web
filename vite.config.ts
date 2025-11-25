@@ -1,8 +1,16 @@
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import Vue from '@vitejs/plugin-vue'
+import Markdown from 'unplugin-vue-markdown/vite'
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
-  base: '/web/',
+    plugins: [
+        {
+            ...Markdown({}),   // ← 必须传入一个对象，即使是空的
+            enforce: 'pre',
+        },
+        Vue({
+            include: [/\.vue$/, /\.md$/],
+        }),
+    ],
+    base: '/web/',
 })
